@@ -2,17 +2,21 @@ package com.example.calculate;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     private TextView textView;
     private int first, second;
     private Boolean isOperationClick;
     private String operator;
+    private Button newButton;
 
 
     @Override
@@ -20,7 +24,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         textView = findViewById(R.id.text_view);
+        newButton=findViewById(R.id.newButton);
         makeTransparentStatusBar();
+        buttonIntent();
+    }
+    public void buttonIntent(){
+        newButton.setOnClickListener(view -> {
+            Intent intent= new Intent(MainActivity.this,MainActivity2.class);
+            intent.putExtra("2002",textView.getText().toString());
+            startActivity(intent);
+        });
     }
 
     private void makeTransparentStatusBar() {
@@ -30,6 +43,14 @@ public class MainActivity extends AppCompatActivity {
 
     public void numberClick(View view) {
         switch (view.getId()) {
+            case R.id.btn_null:
+                if (textView.getText().toString().equals("0")){
+                    textView.setText("0");
+                }else {textView.getText().toString().equals("1");
+                    textView.append("0");
+                }
+                isOperationClick = false;
+                break;
             case R.id.btn_one:
                 if (textView.getText().toString().equals("0")) {
                     textView.setText("1");
@@ -39,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
                     textView.append("1");
                 }
                 isOperationClick = false;
+                newButton.setVisibility(View.INVISIBLE);
                 break;
             case R.id.btn_two:
                 if (textView.getText().toString().equals("0")) {
@@ -126,6 +148,7 @@ public class MainActivity extends AppCompatActivity {
                 second = 0;
                 break;
         }
+        newButton.setVisibility(View.INVISIBLE);
     }
 
     public void onOperationClick(View view) {
@@ -134,21 +157,25 @@ public class MainActivity extends AppCompatActivity {
                 first = Integer.parseInt(textView.getText().toString());
                 isOperationClick = true;
                 operator = "+";
+                newButton.setVisibility(View.INVISIBLE);
                 break;
             case R.id.btn_minus:
                 first = Integer.parseInt(textView.getText().toString());
                 isOperationClick = true;
                 operator = "-";
+                newButton.setVisibility(View.INVISIBLE);
                 break;
             case R.id.btn_multiply:
                 first = Integer.parseInt(textView.getText().toString());
                 isOperationClick = true;
                 operator = "*";
+                newButton.setVisibility(View.INVISIBLE);
                 break;
             case R.id.btn_divide:
                 first = Integer.parseInt(textView.getText().toString());
                 isOperationClick = true;
                 operator = "/";
+                newButton.setVisibility(View.INVISIBLE);
                 break;
             case R.id.btn_equal:
                 switch (operator) {
@@ -174,6 +201,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
                 isOperationClick = true;
+                newButton.setVisibility(View.VISIBLE);
         }
     }
 }

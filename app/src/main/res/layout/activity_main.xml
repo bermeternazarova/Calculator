@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -23,6 +24,19 @@
             android:maxLines="1"
             android:text="@string/zero"
             android:textSize="60sp" />
+
+        <Button
+           android:id="@+id/newButton"
+            style="@style/btn_4_style"
+            android:layout_width="62dp"
+            android:layout_height="62dp"
+            android:layout_marginStart="24dp"
+            android:background="@drawable/btn_background1"
+            android:text="click"
+            android:layout_gravity="center|end"
+            android:layout_marginEnd="20dp"
+
+            />
 
     </FrameLayout>
 
@@ -52,10 +66,12 @@
                 android:text="@string/clear" />
 
             <Button
+                android:id="@+id/btn_clear2"
                 style="@style/btn_1_style"
                 android:layout_width="62dp"
                 android:layout_height="62dp"
                 android:layout_marginStart="24dp"
+                android:onClick="numberClick"
                 android:background="@drawable/btn_background1"
                 android:drawableStart="@drawable/ic_baseline_backspace_24"
                 android:paddingStart="18dp" />
@@ -189,18 +205,22 @@
             android:layout_marginTop="22dp">
 
             <Button
+                android:id="@+id/btn_null"
                 style="@style/btn_2_style"
                 android:layout_width="150dp"
                 android:layout_height="62dp"
                 android:layout_marginStart="24dp"
+                android:onClick="numberClick"
                 android:background="@drawable/btn_background2"
-                android:text="@string/zero" />
+                android:text="@string/zeroNum" />
 
             <Button
+                android:id="@+id/btn_zapataya"
                 style="@style/btn_2_style"
                 android:layout_width="62dp"
                 android:layout_height="62dp"
                 android:layout_marginStart="20dp"
+                android:onClick="numberClick"
                 android:background="@drawable/btn_background2"
                 android:text="@string/comma" />
         </LinearLayout>
